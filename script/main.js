@@ -138,7 +138,7 @@ function week(n){
     }
     else{ //5<=n
         const zero= Temporal.PlainDate.from("2026-02-02")
-        let start=zero.add({ days: 7*(n-1) })
+        let start=zero.add({ days: 7*(n-5) })
         let end=start.add({ days: 6 })
         start=start.toLocaleString("es-ES")
         end=end.toLocaleString("es-ES")
