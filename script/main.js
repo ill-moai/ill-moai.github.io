@@ -245,24 +245,23 @@ function week(n){
     }
 }
 
-//inverse of week (to be done)
+//inverse of week
 function weekNumber(date){
     const zero= Temporal.PlainDate.from("2025-11-24")
     const four= Temporal.PlainDate.from("2025-12-22")
     const five= Temporal.PlainDate.from("2026-02-02")
-    if (date<zero){
+    if (Temporal.PlainDate.compare(date,four)==-1){
         return "Error: prehistoric date"
     } 
-    else if(date<four){
+    else if(Temporal.PlainDate.compare(date,four)==-1){
         return date.since(zero,{smallestUnit : "weeks"})
     }
-    else if(date<five){
+    else if(Temporal.PlainDate.compare(date,four)==-1){
         return 4
     }
     else {
         return date.since(zero,{smallestUnit : "weeks"})
     }
-    return 1
 }
 
 //report of week n's points
