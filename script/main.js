@@ -185,7 +185,7 @@ function loadFile(filePath) {
 function loadWeeks(n){
     const weeks=[]
     for (let i=0; i<=week_current;i++){
-        let week_i=loadFile(`/data/points/week${i}.txt`)
+        let week_i=loadFile(`data/points/week${i}.txt`)
         weeks.push(pointsFromWeek(week_i))
     }
     return weeks
