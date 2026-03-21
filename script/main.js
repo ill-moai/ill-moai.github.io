@@ -312,7 +312,7 @@ const week01="Bryam; 1; 0; \nCarmen; 7; 0; \nClaudia; 4; 9; 0\nDavid; 1; 2;\nEly
 
 const date_current = Temporal.Now.plainDateISO()
 const week_current=weekNumber(date_current)
-const weeks = loadWeeks(week_current)
+//const weeks = loadWeeks(week_current)
 const people = loadFile("data/people.txt").split("\n")
 
 function setweek(){
