@@ -173,10 +173,22 @@ function mathbb(str){
 
 function loadFile(filePath) {
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", filePath);
-    xmlhttp.send();
-    
-    return xmlhttp.responseText;
+            xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                if (xmlhttp.status == 200) {
+                    return xmlhttp.responseText;
+                }
+                else if (xmlhttp.status == 400) {
+                    alert('There was an error 400');
+                }
+                else {
+                    alert('something else other than 200 was returned');
+                }
+            }
+        };
+
+        xmlhttp.open("GET", filePath, true);
+        xmlhttp.send();
 }
 
 function loadWeeks(n){
