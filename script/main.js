@@ -172,17 +172,11 @@ function mathbb(str){
 }
 
 function loadFile(filePath) {
-    var result = null;
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
-        result = xmlhttp.responseText;
-        }
-    }
+    let xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", filePath);
     xmlhttp.send();
     
-    return result;
+    return xmlhttp.responseText;
 }
 
 function loadWeeks(n){
