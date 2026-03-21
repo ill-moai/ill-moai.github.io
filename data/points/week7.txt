@@ -1,0 +1,14 @@
+Carmen; 0; 2;
+Claudia; 1; 6.1; 🌞
+Dani; 0; 1;
+David; 2; 0;
+Elyas; 6; 9; :v, 🪳
+Isabel; 3; 0;
+Kuba; 1; 0;
+Laura; 6; 2; 〰️, 🍍
+Osiris; 1; 1; 🇨🇳
+Pablo RAE; 0; 1;
+Pablo Sex; 2; 0;
+Raquel; 9; 3;
+Raúl; 1; 0; ✌️
+Sebastián; 3; 0; 
