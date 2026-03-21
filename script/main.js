@@ -254,13 +254,13 @@ function weekNumber(date){
         return "Error: prehistoric date"
     } 
     else if(Temporal.PlainDate.compare(date,four)==-1){
-        return date.since(zero,{smallestUnit : "weeks"})
+        return date.since(zero,{smallestUnit : "weeks"}).total({unit:"weeks",relativeTo:zero})
     }
-    else if(Temporal.PlainDate.compare(date,four)==-1){
+    else if(Temporal.PlainDate.compare(date,five)==-1){
         return 4
     }
     else {
-        return date.since(zero,{smallestUnit : "weeks"})
+        return date.since(zero,{smallestUnit : "weeks"}).total({unit:"weeks",relativeTo:zero})
     }
 }
 
