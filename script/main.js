@@ -317,8 +317,8 @@ const people = loadFile("data/people.txt").split("\n")
 
 function setweek(){
     let n= Number(document.getElementById("wk").value)
-    document.getElementById("this week").innerHTML = weekReport(weeks,people,n);
-    document.getElementById("total").innerHTML = totalReport(weeks,people,n);
+    document.getElementById("this week").innerHTML = loadFile(data/points/week00.txt);
+    //document.getElementById("total").innerHTML = totalReport(weeks,people,n);
     //document.getElementById("total").innerHTML = clau1+"<br>"+clau2+"<br>"+clausum+"<br>"+pointFormatter(clausum)
 }
 
