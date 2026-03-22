@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <head>
-  <title>Sticker submissions</title>
-  <style>
-    body {text-align:center;}
-  </style>
+  <title>Sticker submissions | Mai points Log</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <meta charset="utf-8">
 </head>
 <html>
 <body>
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfaRmb3uzPPrLvIlIipWpxiNDYBQH8Im9RURtoQiPZJZ3Tq5A/viewform?embedded=true" 
-width=”100%” height="815" frameborder="5" marginheight="0" marginwidth="0">Cargando…</iframe>
+<div class="container">
+ 
+  <header>
+      Sticker Form
+  </header>
 
-<a href="index.html">Go back</a>
+  <div class = "main">
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfaRmb3uzPPrLvIlIipWpxiNDYBQH8Im9RURtoQiPZJZ3Tq5A/viewform?embedded=true" 
+  width=”100%” height="200%" frameborder="5" marginheight="0" marginwidth="0">Cargando…</iframe>
+  </div>
 
+  <div class = "side">
+
+    <p>You need to have at least 10 real points or 2 others as per the website/last report to get a sticker.</p>
+      <p>Not sure if you can afford it❓
+      <br><button id="form check button" onclick="peopleDropdown()" >Check your points</button>
+
+    <div id="people dropdown" class="dropdown-content">
+    </div>
+
+    <p id="someone's points">
+    </p>
+    <p id="sticker true or false"></p>
+      </p>
+  
+  Note: yellow can order a maximum of 5 stickers per week regardless of your points
+  </div>
+
+
+  <footer> 
+  <div>
+  <a href="index.html">Go back</a>
+  </div>
+  </footer>
+
+</div>
+
+<script src = "script/main.js"></script> 
 </body>
-
 </html>
