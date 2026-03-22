@@ -7,19 +7,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap" rel="stylesheet">
     
-    <style>
-        body {background-color: powderblue;
-            text-align:center;}
-        div {
-            width:300px;
-            margin:auto;
-        }    
-        h1   {color: firebrick;
-            font-size: 300%;
-            font-family: "Kumar One Outline", system-ui;}
-        h3  {color: tomato;}
-        p    {color: teal;}
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
 </head>
 <html>
 
@@ -31,21 +20,38 @@
 
 <body>
 
-    <h1>MAI points LOG</h1>
-<div>    
-    <h3 style="background-color: palegoldenrod;">🗿the industrial revolution🗿</h3>
+<div class="container">
+
+<header>
+    MAI points LOG
+</header>
+
+<div class="side">
+    <img id="moai" src="media/moai-green.png" onclick="clickMoai()"></img>
 </div>
 
-<p>Welcome❗ This will be the website for my points log, currently under construcction.</p>
-<p>Here you can see last week's and previous point reports:
-    <a href="report-generator.html">Report Generator</a>
-<br>
-Here you can exchange points for stickers (drawn by me):
-    <a href="form.html">Sticker Form</a>
-</p>
+<div class="main" style="direction:rtl">
+    <div class="main-inner" style="width: 95%;
+    margin: 0 auto;
+    direction: ltr;">
+    <p id="points list"></p>
+    </div>
+</div>
+   
 
+<footer>
+    <div style="color:yellow">
+    <b>WANT A STICKER❓</b> Click
+        <a href="form.html">😳here😳</a>
+    </div>    
+    <div id="footer weeks"></div>
 
-<img src="/media/construction.gif"></img>   
+</footer>
+
+</div>
+
+ 
+<script src = "script/main.js"></script> 
 
 </body>
 
