@@ -7,34 +7,44 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap" rel="stylesheet">
 
-  <style>
-    body { text-align: center;}
-    h1   {font-family: "Kumar One Outline", system-ui;}
-    div {
-      width: 75%;
-      border-style: solid;
-      margin: auto;
-      text-align: left;
-    }  
-  </style>
+  <link rel="stylesheet" href="style.css">
+
   <meta charset="utf-8">
 </head>
 <body>
 
-<h1>REPORT GENERATOR</h1>
+<div class="container">
 
-<p>Note: weeks start from zero. Not very 0 \notin N of me, I know.
-   There was an extra week between 4 and 5 and making it 4.5 was a bit annoying to code.</p>
-<p>
+<header>MAI points LOG</header>
+
+<div class="main">
+  <div>
+  <button id="week copy" onclick="copyText('week copy','this week')" style="display: none">Copy</button>
+
+  <p id="this week">
+  </p>
+  </div>
+  <div>
+  <button id="total copy" onclick="copyText('total copy','total')" style="display: none">Copy</button>
+  
+  <p id="total">
+  </p>
+  </div>
+  </div>
+  <div class = "side">
+  <p>Note: weeks start from zero. Not very 0 \notin N of me, I know.
+    There was an extra week between 4 and 5 and making it 4.5 was a bit annoying to code.</p>
+  <p>
   Week: <input type="text" id="wk">
   <button onclick="setweek()"> Submit</button>
-</p>
-
-<div>
-<p id="this week"></p>
-<p id="total"></p>
+  </p>
 </div>
+
+<footer>
 <a href="index.html">Go back</a>
+</footer>
+
+</div> 
 
 <script src=script/main.js>
 </script>
