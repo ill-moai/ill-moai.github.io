@@ -1,30 +1,49 @@
+//Hi, Sebastián
+
 function empty (name){
-    return [name,0,0,[""]]
+    return [name, 0, 0, [[0, ""]]]
 }
 
 function isEmpty(points){
-    return points[1]==0 && points[2]==0 && points[3][0]==""
+    return points[1]==0 && points[2]==0 && points[3][0][0]==0
 }
 
-//points string format-> name; pos; neg; n_1*other_1, ... , n_l*other_l
+//points string format-> name; pos; neg; n_1*other_1, ... , n_l*other_l (can be "other" instead of "1*other")
 function pointReader(points){
     const points_split = points.split(";")
     const name = points_split[0].trim()
     const positive = Number(points_split[1])
     const negative = Number(points_split[2])
-    const other = points_split[3].trim().split(", ")
+    const other = points_split[3].trim().split(",")
+    for (let i=0; i<other.length;i++){
+        other[i]=other[i].trim()
+        let otherpoint_split=other[i].split("*")
+        if (otherpoint_split.length==1){
+            if (other[i]=="") {other[i] = [0, ""]}
+            else {other[i] = [1, other[i]]}
+        }
+        else{
+            other[i] = [Number(otherpoint_split[0]),otherpoint_split[1]]
+        }
+    }
     return [name, positive, negative, other]
 }   
 
-//the inverse of PointReader
-function PointWriter(points){
-    const [name, positive, negative, other] = points
-    if (other[0]==""){
-        return (positive-negative)
+//returns array [n_1*other_1, ... , n_l*other_l] from [[n_1,other1_], ... , [n_l,other_l]]
+function otherToText(other){
+    const result=[]
+    for (let otherpoint of other){
+        let otherpoint_text=null
+        if (otherpoint[0]==1){
+            otherpoint_text=otherpoint[1]
+            result.push(otherpoint_text)
+        }
+        else if (otherpoint[0]>1){
+            otherpoint_text=otherpoint[0]+"*"+otherpoint[1]
+        result.push(otherpoint_text)
+        }
     }
-    else{
-    return positive + "; "+ negative + "; " + other.join(", ")
-    }
+    return result
 }
 
 //both points formatted as arrays [name, pos, neg, n_1*other_1, ... , n_l*other_l]
@@ -36,65 +55,31 @@ function pointSum(points1,points2){
         const negative = points1[2]+points2[2]
         const other1 = Array.from(points1[3])
         let other2 = Array.from(points2[3])
-        if(other1[0]==""){return [name, positive, negative, other2]}
-        else if(other2[0]==""){return [name, positive, negative, other1]}
-        else{
-        let n = other1.length
-        let cont1 = 0
 
-        while (cont1<n) {
-            let otherpoint1 = other1[cont1].split("*")
+        for (i=0;i<other1.length;i++) {
+            const otherpoint1=other1[i]
+            const n1 = otherpoint1[0]
+            const name1 = otherpoint1[1]
             let m=other2.length
             let sum = false
             let cont2 = 0
             while (cont2<m && !sum){
-                let otherpoint2= other2[cont2].split("*")
-                let name1= "name1"
-                let name2= "name1"
-                let i = -1
-                let j = -2
-                if (otherpoint1.length==1){
-                    if (otherpoint2.length==1){
-                        name1= otherpoint1[0]
-                        name2= otherpoint2[0]
-                        i = 1
-                        j = 1
-                    }
-                    else{
-                        name1= otherpoint1[0]
-                        name2= otherpoint2[1]
-                        i = 1
-                        j = Number(otherpoint2[0])
-                    }
-                }
-                else {
-                   if (otherpoint2.length==1){
-                        name1= otherpoint1[1]
-                        name2= otherpoint2[0]
-                        i = Number(otherpoint1[0])
-                        j = 1
-                    }
-                    else{
-                        name1= otherpoint1[1]
-                        name2= otherpoint2[1]
-                        i = Number(otherpoint1[0])
-                        j = Number(otherpoint2[0])
-                    } 
-                }
-            if (name1==name2){
-               other1[cont1]=`${i+j}`+"*"+name1
-               other2=other2.slice(0,cont2).concat(other2.slice(cont2+1))
-               sum=true
+                const otherpoint2 = other2[cont2]
+                const n2 = otherpoint2[0]
+                const name2 = otherpoint2[1]
+                if (name1==name2){
+                other1[i]=[n1+n2,name1]
+                other2=other2.slice(0,cont2).concat(other2.slice(cont2+1))
+                sum=true
             }
             else {
                 cont2+=1
             }
-            } 
-            cont1+=1
+            }
         }
-        const other = other1.concat(other2)   
-        return [name, positive, negative, other]
-        }
+        other2 = other1.concat(other2)
+        return [name, positive, negative, other2]
+        
     }
     else{
         return "Error: added points belonging to different people"
@@ -105,24 +90,31 @@ function howManyOther(points){
     const oth=points[3]
     let i=0
     for (let point of oth){
-        const point_split= point.split("*")
-        if (point_split.length==1){
-            i+=1
-        }
-        else{
-            i+=point_split[0]
-        }
+        i+=point[0]
     }
     return i
 }
 //formats points as real + other_1 + ... + other_n
 function pointFormatter(points){
     const [name, positive, negative, other] = points
-    if (other[0]==""){
+    if (howManyOther(points)==0){
         return (positive-negative)
     }
     else{
-    return (positive-negative) + " + "+ other.join(" + ")
+        other_text=otherToText(other)
+        return (positive-negative) + " + "+ other_text.join(" + ")
+    }
+}
+
+//the inverse of PointReader
+function PointWriter(points){
+    const [name, positive, negative, other] = points
+    if (howManyOther(points)==0){
+        return (positive-negative)
+    }
+    else{
+        other_text=otherToText(other)
+    return positive + "; "+ negative + "; " + other_text.join(", ")
     }
 }
 
@@ -131,6 +123,7 @@ function mathbb(str){
     function mathbb_letter(ch){
         const upper= ["𝔸","𝔹","ℂ","𝔻","𝔼","𝔽","𝔾","ℍ","𝕀","𝕁","𝕂","𝕃","𝕄","ℕ","𝕆","ℙ","ℚ","ℝ","𝕊","𝕋","𝕌","𝕍","𝕎","𝕏","𝕐","ℤ"]
         const lower= ["𝕒","𝕓","𝕔","𝕕","𝕖","𝕗","𝕘","𝕙","𝕚","𝕛","𝕜","𝕝","𝕞","𝕟","𝕠","𝕡","𝕢","𝕣","𝕤","𝕥","𝕦","𝕧","𝕨","𝕩","𝕪","𝕫"]
+        const tildes= new Map([["Á","𝔸́"],["É","𝔼́"],["Í","𝕀́"],["Ó","𝕆́"],["Ú","𝕌́"],["Ñ","ℕ̃"],["á","𝕒́"],["é","𝕖́"],["í","𝕚́"],["ó","𝕠́"],["ú","𝕦́"],["ñ","𝕟̃"]])
         const n=ch.codePointAt(0)
         if (65<=n && n<=90) {
             return upper[n-65]
@@ -138,41 +131,8 @@ function mathbb(str){
         else if (97<=n && n<=122){
             return lower[n-97]
         }
-        else if (ch=="Á"){
-            return "𝔸́"
-        }
-        else if (ch=="É"){
-            return "𝔼́"
-        }
-        else if (ch=="Í"){
-            return "𝕀́"
-        }
-        else if (ch=="Ó"){
-            return "𝕆́"
-        }
-        else if (ch=="Ú"){
-            return "𝕌́"
-        }
-        else if (ch=="Ñ"){
-            return "ℕ̃"
-        }
-        else if (ch=="á"){
-            return "𝕒́"
-        }
-        else if (ch=="é"){
-            return "𝕖́"
-        }
-        else if (ch=="í"){
-            return "𝕚́"
-        }
-        else if (ch=="ó"){
-            return "𝕠́"
-        }
-        else if (ch=="ú"){
-            return "𝕦́"
-        }
-        else if (ch=="ñ"){
-            return "𝕟̃"
+        else if (tildes.has(ch)){
+            return tildes.get(ch)
         }
         else {
             return ch
@@ -196,7 +156,7 @@ async function loadFile(path) {
     return text
 }
 
-
+//initializes variables weeks, people and last updated
 async function loadWeeksPeople(n){
     if (ready){
         return null
@@ -276,7 +236,7 @@ function week(n){
     }
 }
 
-//inverse of week
+//week number (starting from zero)
 function weekNumber(date){
     const zero= Temporal.PlainDate.from("2025-11-24")
     const four= Temporal.PlainDate.from("2025-12-22")
@@ -329,7 +289,7 @@ function listCurrentPoints(weeks,people,n){
 
     for (let person of people){
         const points = getPointsTotal(weeks,person,n)
-        text.push(person+": "+pointFormatter(points))
+        text.push("<b>"+person+": </b>"+pointFormatter(points))
     }
     return text.join("<br><br>")
 }
@@ -338,6 +298,14 @@ function clickMoai(){
     if (document.getElementById("moai").src=="media/moai-green.png"){
         document.getElementById("moai").src="media/moai-purple.png"
     }
+}
+
+function copyText(button_id,id) {
+  let text = (document.getElementById(id).innerHTML)
+  text=text.replaceAll("<br>","\n")
+  text=text.replaceAll("&amp","&")
+  navigator.clipboard.writeText(text);
+  document.getElementById(button_id).innerHTML="Copied"
 }
 
 async function peopleDropdown(){
@@ -395,6 +363,10 @@ async function setweek(){
     let n= Number(document.getElementById("wk").value)
     document.getElementById("this week").innerHTML = weekReport(weeks,people,n);
     document.getElementById("total").innerHTML = totalReport(weeks,people,n);
+    document.getElementById("week copy").style.display=""
+    document.getElementById("week copy").innerHTML="Copy"
+    document.getElementById("total copy").style.display=""
+    document.getElementById("total copy").innerHTML="Copy"
 }
 
 async function displayCurrentPoints(){
