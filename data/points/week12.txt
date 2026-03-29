@@ -13,7 +13,7 @@ Laura; 11; 6;
 David; 1; 3;
 Raquel; 22.1; 7;
 Isabel; 9; 20;
-Pepe 6; 0; 
+Pepe; 6; 0; 
 Alberto; 7; 2;
 Sebastián; 4; 0;
 Chat; 4; 2;
