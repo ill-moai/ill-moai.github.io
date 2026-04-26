@@ -1,0 +1,18 @@
+David; 4; 2; 𝔼
+Raquel; 23; 5; 
+Raúl; 4; 2;
+Claudia; 4; 6;
+Elyas; 26; 5;
+Alberto; 26; 3; 🔪
+Laura; 7; 1;
+Pablo RAE; 13; 0; 👗, 🎸,𝕓𝕠𝕚𝕟𝕘
+Dani; 5; 0;
+Chat; 5; 4;
+Sebastián; 12; 4;
+Osiris; 1; 2;
+Carmen; 9; 0; 
+Pepe Gallardo; 2;0;
+Pepelu;2;0;
+Kuba;1;0;
+Ton&;0;2;
+Isabel;1;0;

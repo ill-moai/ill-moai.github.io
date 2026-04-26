@@ -1,0 +1,21 @@
+Alberto; 2; 1;
+Alejandro; 1; 2;
+Carmen; 3; 0;
+Chat; 3; 1;
+Claudia; 13; 10;
+Dani; 3; 0;
+David; 4; 4; 🌀
+Elyas; 3; 2;
+Fabrizio; 0; 1;
+Kuba; 0; 2;
+Laura; 10; 2; 𝕕𝕚𝕒𝕕𝕚𝕔 𝕡𝕠𝕚𝕟𝕥
+Manolo; 0; 1;
+Osiris; 2; 0;
+Pablo RAE; 6; 1;
+Pablo Sex; 1; 2;
+Pepe; 2; 0;
+Pepelu; 1; 0;
+Raquel; 14; 9; 🇳🇱
+Raúl; 12; 2; 🚜
+Sebastián; 3; 0;
+Ton&; 1; 0;

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Report Generator | Mai points Log</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <meta charset="utf-8">
+</head>
+<body>
+
+<div class="container">
+
+<header id="header"></header>
+
+<div class="moai-contain" onclick="clickMoai()">
+    <img id="moai" class= "moai" src="media/moai-green.png"></img>
+</div>
+
+<main>
+  <p>Note: weeks start from zero. Not very 0 \notin N of me, I know.
+    There was an extra week between 4 and 5 and making it 4.5 was a bit annoying to code.</p>
+  <p>
+  Week: <input type="text" id="wk">
+  <button onclick="setweek()"> Submit</button>
+  </p>
+<div>
+  <div>
+  <button id="week copy" onclick="copyText('week copy','this week')" style="display: none">Copy</button>
+
+  <p id="this week">
+  </p>
+  </div>
+
+  <div>
+  <button id="total copy" onclick="copyText('total copy','total')" style="display: none">Copy</button>
+  
+  <p id="total">
+  </p>
+  </div>
+</div>  
+</main>
+
+
+<footer id="footer"></footer>
+
+</div> 
+
+<script src=script/main.js>
+</script>
+
+</body>
+</html>
